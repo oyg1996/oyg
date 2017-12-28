@@ -82,5 +82,11 @@ public class UserController {
         return true;
     }
 
+    @RequestMapping(value ="/rrr")
+    public @ResponseBody Object rrr(){
+        redisCacheManager.del("pcHomeBanner");
+        return true;
+    }
+
 
 }
