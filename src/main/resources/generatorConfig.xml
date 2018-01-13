@@ -5,9 +5,9 @@
 <generatorConfiguration>
 
     <!--导入属性配置-->
-    <properties resource="jdbc.properties"></properties>
+    <properties resource="jdbc.properties"/>
     <!-- !!!! Driver Class Path !!!! -->
-    <classPathEntry location="D:\server\mavenRepository\maven_jar\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+    <classPathEntry location="G:\Green\Maven\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
 
     <context id="context" targetRuntime="MyBatis3">
         <property name="beginningDelimiter" value="`"/>
@@ -26,27 +26,39 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- !!!! Model Configurations !!!! -->
+        <!-- targetProject:生成实体类的位置 -->
         <javaModelGenerator targetPackage="com.oyg.entity" targetProject="src/main/java">
-
             <property name="constructorBased" value="true"/>
-            <property name="enableSubPackages" value="false"/>
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false"/>
             <property name="immutable" value="false"/>
-            <property name="trimStrings" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!-- !!!! Mapper XML Configurations !!!! -->
+        <!-- targetProject:mapper映射文件生成的位置 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator targetPackage="com.oyg.dao" targetProject="src/main/java" type="XMLMAPPER">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <!-- !!!! Table Configurations !!!! -->
-        <table tableName="user"  enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
-               enableUpdateByExample="true"/>
+        <!-- 指定数据库表 -->
+		<table schema="" tableName="tb_content"/>
+		<table schema="" tableName="tb_content_category"/>
+		<table schema="" tableName="tb_item"/>
+		<table schema="" tableName="tb_item_cat"/>
+		<table schema="" tableName="tb_item_desc"/>
+		<table schema="" tableName="tb_item_param"/>
+		<table schema="" tableName="tb_item_param_item"/>
+		<table schema="" tableName="tb_order"/>
+		<table schema="" tableName="tb_order_item"/>
+		<table schema="" tableName="tb_order_shipping"/>
+		<table schema="" tableName="tb_user"/>
     </context>
 </generatorConfiguration>

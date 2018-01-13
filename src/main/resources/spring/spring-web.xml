@@ -16,7 +16,9 @@
 >
     <!-- 定时任务注解 -->
     <context:annotation-config/>
+
     <mvc:annotation-driven/>
+
     <context:component-scan base-package="com.oyg"/>
     <task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
     <!--配置定时任务的线程池-->
@@ -38,16 +40,8 @@
                      allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"/>
     </mvc:cors>
 
-
-    <!--静态资源默认servlet配置
-    	1、加入对静态资源的处理:js,css,gif,png
-    	2、允许使用"/"做整体映射
-    -->
-    <mvc:default-servlet-handler/>
-
     <!--扫描controller-->
     <context:component-scan base-package="com.oyg.controller"/>
-
 
     <!-- 配置 JSR303 Bean Validator 定义 -->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
@@ -57,6 +51,11 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--静态资源映射-->
+    <!--<mvc:default-servlet-handler/>-->
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css"/>
 
     <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

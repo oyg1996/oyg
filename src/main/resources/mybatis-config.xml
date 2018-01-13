@@ -5,24 +5,24 @@
 <configuration>
 
     <settings>
-        <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
         <setting name="cacheEnabled" value="true"/>
-        <!-- Sets the number of seconds the driver will wait for a response from the database -->
         <setting name="defaultStatementTimeout" value="3000"/>
-        <!-- Enables automatic mapping from classic database column names A_COLUMN to camel case classic Java property names aColumn -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <!-- Allows JDBC support for generated keys. A compatible driver is required.
-        This setting forces generated keys to be used if set to true,
-         as some drivers deny compatibility but still work -->
         <setting name="useGeneratedKeys" value="true"/>
         <!--使用列别名替换别名-->
         <setting name="useColumnLabel" value="true"/>
     </settings>
-    <!-- Continue going here -->
+
+    <!-- pagehelper分页插件 -->
     <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <!--<property name="" value=""-->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!--配置方言-->
+            <!--<property name="dialect" value="mysql"/>-->
         </plugin>
     </plugins>
 
+    <!--mapper映射文件-->
+    <!--<mappers>-->
+        <!--<mapper resource="com/oyg/mapper/*.xml"/>-->
+    <!--</mappers>-->
 </configuration>

@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.oyg</groupId>
   <artifactId>oyg</artifactId>
@@ -74,6 +76,8 @@
       <artifactId>mybatis</artifactId>
       <version>3.4.1</version>
     </dependency>
+
+    <!-- 在pom中可以直接配置依赖的数据库 generatorConfig.xml就不需要再配置数据库的jar了 -->
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
@@ -82,7 +86,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>6.0.3</version>
+      <version>5.1.30</version>
     </dependency>
     <dependency>
       <groupId>com.mchange</groupId>
@@ -153,20 +157,17 @@
       <version>5.4.1.Final</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
       <version>3.2.8.RELEASE</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>4.5.2</version>
     </dependency>
-
 
     <dependency>
       <groupId>redis.clients</groupId>
@@ -189,18 +190,6 @@
       <groupId>com.dyuproject.protostuff</groupId>
       <artifactId>protostuff-runtime</artifactId>
       <version>1.1.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.pagehelper</groupId>
-      <artifactId>pagehelper</artifactId>
-      <version>5.0.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.qiniu</groupId>
-      <artifactId>qiniu-java-sdk</artifactId>
-      <version>7.2.6</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -235,7 +224,6 @@
       <artifactId>gson</artifactId>
       <version>2.8.1</version>
     </dependency>
-
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
@@ -247,8 +235,19 @@
       <version>1.0.5</version>
     </dependency>
 
-  </dependencies>
+    <!--FastDFS图片编辑器-->
+    <dependency>
+      <groupId>fastdfs_client</groupId>
+      <artifactId>fastdfs_client</artifactId>
+      <version>1.25</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>RELEASE</version>
+    </dependency>
 
+  </dependencies>
 
   <build>
     <finalName>oyg</finalName>
@@ -270,7 +269,9 @@
           <configurationFile>
             src/main/resources/generatorConfig.xml
           </configurationFile>
+          <!--允许移动生成的文件-->
           <verbose>true</verbose>
+          <!--允许覆盖生成的文件-->
           <overwrite>true</overwrite>
         </configuration>
       </plugin>
@@ -285,10 +286,7 @@
           <encoding>utf-8</encoding>
         </configuration>
       </plugin>
-
-
     </plugins>
-
   </build>
 </project>
 
